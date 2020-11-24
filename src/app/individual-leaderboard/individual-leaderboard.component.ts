@@ -8,7 +8,7 @@ import { LeaderboardApiService } from '../services/leaderboard-api.service';
   styleUrls: ['./individual-leaderboard.component.scss']
 })
 export class IndividualLeaderboardComponent implements OnInit {
-
+  public isLoaded = false;
   public usersList: IUser[];
   public teamsList: ITeam[];
   public teamMappings: ITeamNameMappings = {};
@@ -39,6 +39,7 @@ export class IndividualLeaderboardComponent implements OnInit {
   constructor(private apiService: LeaderboardApiService) { 
     this.getTeams();
     this.getUsers();
+    this.isLoaded = true;
   }
 
   ngOnInit(): void {
