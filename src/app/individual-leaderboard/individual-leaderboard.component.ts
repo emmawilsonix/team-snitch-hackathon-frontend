@@ -9,10 +9,10 @@ import { LeaderboardApiService } from '../services/leaderboard-api.service';
 })
 export class IndividualLeaderboardComponent implements OnInit {
 
-  private usersList: IUser[];
-  private teamsList: ITeam[];
-  private teamMappings: ITeamNameMappings = {};
-  private teamImgMappings: ITeamImgMappings = {
+  public usersList: IUser[];
+  public teamsList: ITeam[];
+  public teamMappings: ITeamNameMappings = {};
+  public teamImgMappings: ITeamImgMappings = {
     1: {
       img: '../../assets/images/parrot.png',
       height: '18px',
