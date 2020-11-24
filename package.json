@@ -3,16 +3,23 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
+  },
+  "engines": {
+    "node": "15.0.1",
+    "npm": "7.0.3"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.0.2",
     "@angular/cdk": "^11.0.0",
+    "@angular/cli": "^11.0.2",
+    "@angular/compiler-cli": "~11.0.2",
     "@angular/common": "~11.0.2",
     "@angular/compiler": "~11.0.2",
     "@angular/core": "~11.0.2",
@@ -30,8 +37,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.2",
-    "@angular/cli": "^11.0.2",
-    "@angular/compiler-cli": "~11.0.2",
     "@angular/language-service": "~11.0.2",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
