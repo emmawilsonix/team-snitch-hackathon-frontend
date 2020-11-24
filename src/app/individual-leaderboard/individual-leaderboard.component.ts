@@ -39,6 +39,7 @@ export class IndividualLeaderboardComponent implements OnInit {
   constructor(private apiService: LeaderboardApiService) { 
     this.getTeams();
     this.getUsers();
+    this.isLoaded = true;
   }
 
   ngOnInit(): void {
@@ -109,7 +110,6 @@ export class IndividualLeaderboardComponent implements OnInit {
           this.teamMappings[team.teamID] = team.name;
         });
         this.teamsList = response;
-        this.isLoaded = true;
       },
       console.error
     );
