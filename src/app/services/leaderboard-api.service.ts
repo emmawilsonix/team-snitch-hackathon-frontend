@@ -45,4 +45,22 @@ export class LeaderboardApiService {
         catchError(this.handleError)
       );
   }
+
+  /** GET all test teams */
+  public getAllTeams(): Observable<ITeam[]> {
+    return this.http
+      .get<ITeam[]>(`${API_URL}/teams`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  /** GET all test users */
+  public getAllUsers(): Observable<IUser[]> {
+    return this.http
+      .get<IUser[]>(`${API_URL}/users`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 }

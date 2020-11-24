@@ -11,24 +11,19 @@ export class TeamLeaderboardComponent implements OnInit {
 
   public teamsList: ITeam[];
   private teamStyleMappings: ITeamStylesMappings = {
-    1: {
+    189631: {
       colour: 'rgb(30, 149, 166)',
       image: 'assets/images/parrot.png'
     },
-    2: {
+    189651: {
       colour: 'rgb(135, 74, 162)',
       image: 'assets/images/cat.png'
     },
-    3: {
+    189641: {
       colour: 'rgb(217, 169, 0)',
       image: 'assets/images/banana.png'
     },
-    4: {
-      colour: 'rgb(64, 150, 70)',
-      image: 'assets/images/orange.png'
-    },
-    // Placeholder
-    5: {
+    189661: {
       colour: 'rgb(64, 150, 70)',
       image: 'assets/images/orange.png'
     }
@@ -37,7 +32,7 @@ export class TeamLeaderboardComponent implements OnInit {
   constructor(private apiService: LeaderboardApiService) { }
 
   ngOnInit(): void {
-    this.getTestTeams();
+    this.getTeams();
   }
 
   /** Function to get test teams */
@@ -50,6 +45,21 @@ export class TeamLeaderboardComponent implements OnInit {
           team.img = this.teamStyleMappings[team.teamID].image;
         });
         this.teamsList = response.splice(0,4).sort((a, b) => (b.team_points) - (a.team_points));
+      },
+      console.error
+    );
+  }
+
+  /** Function to get test teams */
+  public getTeams(): void {
+    this.apiService
+      .getAllTeams()
+      .subscribe(response => {
+        response.forEach(team => {
+          team.colour = this.teamStyleMappings[team.teamID].colour;
+          team.img = this.teamStyleMappings[team.teamID].image;
+        });
+        this.teamsList = response.sort((a, b) => (b.team_points) - (a.team_points));
       },
       console.error
     );

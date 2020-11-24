@@ -34,7 +34,7 @@
 }
 
 ::ng-deep .dancing-banana {
-    border-left: 5px solid rgb(135, 74, 162) !important;
+    border-left: 5px solid rgb(217, 169, 0) !important;
     border-radius: 8px;
 }
 
@@ -50,4 +50,8 @@
 .user-image {
     height: 40px;
     width: 40px;
+}
+
+.user-list-container { 
+    padding-bottom: 72px;
 }
