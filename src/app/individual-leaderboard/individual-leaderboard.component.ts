@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ITeam, ITeamImgMappings, ITeamNameMappings, IUser } from '../models/models';
 import { LeaderboardApiService } from '../services/leaderboard-api.service';
 
@@ -7,7 +7,7 @@ import { LeaderboardApiService } from '../services/leaderboard-api.service';
   templateUrl: './individual-leaderboard.component.html',
   styleUrls: ['./individual-leaderboard.component.scss']
 })
-export class IndividualLeaderboardComponent implements OnInit {
+export class IndividualLeaderboardComponent implements OnChanges {
   public isLoaded = false;
   public usersList: IUser[];
   public teamsList: ITeam[];
@@ -41,8 +41,12 @@ export class IndividualLeaderboardComponent implements OnInit {
     this.getUsers();
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    throw new Error('Method not implemented.');
   }
+
+  // ngOnInit(): void {
+  // }
 
   /** Function to get test users */
   public getTestUsers(): void {
