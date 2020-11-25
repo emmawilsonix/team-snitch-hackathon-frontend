@@ -1,4 +1,5 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+
 import { ITeam, ITeamImgMappings, ITeamNameMappings, IUser } from '../models/models';
 import { LeaderboardApiService } from '../services/leaderboard-api.service';
 
@@ -8,10 +9,9 @@ import { LeaderboardApiService } from '../services/leaderboard-api.service';
   styleUrls: ['./individual-leaderboard.component.scss']
 })
 export class IndividualLeaderboardComponent implements OnChanges {
-  public isLoaded = false;
-  public usersList: IUser[];
-  public teamsList: ITeam[];
-  public teamMappings: ITeamNameMappings = {};
+
+  @Input() usersList!: IUser[];
+
   public teamImgMappings: ITeamImgMappings = {
     189631: {
       img: '../../assets/images/parrot.png',
@@ -36,87 +36,13 @@ export class IndividualLeaderboardComponent implements OnChanges {
   };
 
 
-  constructor(private apiService: LeaderboardApiService) { 
-    this.getTeams();
-    this.getUsers();
+  constructor() {
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
+
   }
 
-  // ngOnInit(): void {
-  // }
-
-  /** Function to get test users */
-  public getTestUsers(): void {
-    this.apiService
-      .getAllTestUsers()
-      .subscribe(response => {
-        this.usersList = this.parseUsers(response);
-      },
-      console.error
-    );
-  }
-
-  /** Function to get test users */
-  public getUsers(): void {
-    this.apiService
-      .getAllUsers()
-      .subscribe(response => {
-        this.usersList = this.parseUsers(response);
-        this.isLoaded = true;
-      },
-      console.error
-    );
-  }
-
-  /** Function to make first and last name title-case */
-  public titleCaseName(name: string) {
-    const titleCasedName = name.charAt(0).toUpperCase() + name.substring(1);
-    return titleCasedName;
- }
-
- /** Function to parse users and get names from emails */
-  public parseUsers(users: IUser[]): IUser[] {
-    users.forEach(user => {
-      let fullName: string[]  = user.emailAddress.split('@');
-      fullName = fullName[0].split('.');
-      const firstName: string = this.titleCaseName(fullName[0]);
-      const lastName: string = this.titleCaseName(fullName[1]);
-      const fullNameString: string = firstName + ' ' + lastName;
-      user.name = fullNameString;
-      user.teamName = this.teamMappings[user.teamID];
-    });
-    return users.sort((a, b) => (b.points) - (a.points));
-  }
-
-  /** Function to get test teams */
-  public getTestTeams(): void {
-    this.apiService
-      .getAllTestTeams()
-      .subscribe(response => {
-        response.forEach(team => {
-          this.teamMappings[team.teamID] = team.name;
-        });
-        this.teamsList = response;
-      },
-      console.error
-    );
-  }
-
-  /** Function to get test teams */
-  public getTeams(): void {
-    this.apiService
-      .getAllTeams()
-      .subscribe(response => {
-        response.forEach(team => {
-          this.teamMappings[team.teamID] = team.name;
-        });
-        this.teamsList = response;
-      },
-      console.error
-    );
-  }
 
 }

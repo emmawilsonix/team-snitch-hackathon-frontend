@@ -1,11 +1,11 @@
 <h2 class="individualLeaderboard">Individual Leaderboard</h2>
 
-<mat-list *ngIf="isLoaded" class="user-list-container">
+<mat-list class="user-list-container">
 	<mat-list-item *ngFor="let user of usersList; index as i;" [ngClass]="user.teamName.split(' ').join('-').toLowerCase()">
 		<span matListIcon class="placement">{{i+1}}</span>
 		<img class="user-image" matListAvatar [src]="user.img">
 		<h3 matLine>{{user.name}}</h3>
-		<p matLine>{{user.teamName}} 
+		<p matLine>{{user.teamName}}  
 			<img class="team-image" 
 			[style.height]="teamImgMappings[user.teamID].height"
 			[style.width]="teamImgMappings[user.teamID].width"

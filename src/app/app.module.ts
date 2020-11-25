@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TeamLeaderboardComponent } from './team-leaderboard/team-leaderboard.component';
@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     MatCardModule,
     MatGridListModule,
