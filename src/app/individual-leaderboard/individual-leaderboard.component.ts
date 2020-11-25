@@ -39,7 +39,6 @@ export class IndividualLeaderboardComponent implements OnInit {
   constructor(private apiService: LeaderboardApiService) { 
     this.getTeams();
     this.getUsers();
-    this.isLoaded = true;
   }
 
   ngOnInit(): void {
@@ -62,6 +61,7 @@ export class IndividualLeaderboardComponent implements OnInit {
       .getAllUsers()
       .subscribe(response => {
         this.usersList = this.parseUsers(response);
+        this.isLoaded = true;
       },
       console.error
     );
