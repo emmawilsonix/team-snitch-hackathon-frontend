@@ -70,11 +70,16 @@ export class LandingPageComponent implements OnInit {
   public parseUsers(users: IUser[]): IUser[] {
     users.forEach(user => {
       let fullName: string[]  = user.emailAddress.split('@');
-      fullName = fullName[0].split('.');
-      const firstName: string = this.titleCaseName(fullName[0]);
-      const lastName: string = this.titleCaseName(fullName[1]);
-      const fullNameString: string = firstName + ' ' + lastName;
-      user.name = fullNameString;
+      if (fullName[0].indexOf('.') !== -1) {
+        fullName = fullName[0].split('.');
+        const firstName: string = this.titleCaseName(fullName[0]);
+        const lastName: string = this.titleCaseName(fullName[1]);
+        const fullNameString: string = firstName + ' ' + lastName;
+        user.name = fullNameString;
+      } else {
+        user.name = fullName[0];
+      }
+
       user.teamName = this.teamMappings[user.teamID];
     });
     return users.sort((a, b) => (b.points) - (a.points));
