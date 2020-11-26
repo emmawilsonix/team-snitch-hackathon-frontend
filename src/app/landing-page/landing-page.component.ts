@@ -69,17 +69,6 @@ export class LandingPageComponent implements OnInit {
     /** Function to parse users and get names from emails */
   public parseUsers(users: IUser[]): IUser[] {
     users.forEach(user => {
-      let fullName: string[]  = user.emailAddress.split('@');
-      if (fullName[0].indexOf('.') !== -1) {
-        fullName = fullName[0].split('.');
-        const firstName: string = this.titleCaseName(fullName[0]);
-        const lastName: string = this.titleCaseName(fullName[1]);
-        const fullNameString: string = firstName + ' ' + lastName;
-        user.name = fullNameString;
-      } else {
-        user.name = fullName[0];
-      }
-
       user.teamName = this.teamMappings[user.teamID];
     });
     return users.sort((a, b) => (b.points) - (a.points));
